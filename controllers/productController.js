@@ -5,7 +5,7 @@ import {
 	update,
 	remove,
 } from "../models/productModel.js";
-import { getPostData } from "../utils.js";
+import { getPostReqData } from "../utils.js";
 
 /*
     @desc    Fetches ALL Products
@@ -46,7 +46,7 @@ export const getProduct = async (req, res, prodId) => {
 */
 export const createProduct = async (req, res) => {
 	try {
-		let body = await getPostData(req);
+		let body = await getPostReqData(req);
 		const { title, desc, price } = JSON.parse(body);
 		const newProduct = await create({
 			title,
@@ -71,7 +71,7 @@ export const updateProduct = async (req, res, prodId) => {
 			res.writeHead(404, { "Content-Type": "application/json" });
 			return res.end(JSON.stringify({ msg: "Product NOT Found" }));
 		}
-		const body = await getPostData(req);
+		const body = await getPostReqData(req);
 		const { title, desc, price } = JSON.parse(body);
 		const updatedProduct = await update(prodId, {
 			title: title || existingProduct.title,

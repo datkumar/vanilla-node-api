@@ -1,6 +1,4 @@
-import { rejects } from "assert";
 import { writeFileSync } from "fs";
-import { resolve } from "path";
 
 export const writeDataToFile = (filename, content) => {
 	// writeFileSync(file, data, options?)
@@ -12,7 +10,7 @@ export const writeDataToFile = (filename, content) => {
 	});
 };
 
-export const getPostData = (req) => {
+export const getPostReqData = (req) => {
 	return new Promise((resolve, reject) => {
 		try {
 			let body = "";
